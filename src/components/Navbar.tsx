@@ -14,9 +14,9 @@ export default function Navbar() {
     return () => removeEventListener("keydown", closeOnEscape);
   }, []);
   return (
-    <header className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${solid || open ? "bg-ink/90 backdrop-blur" : ""}`}>
+    <header className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${solid || open ? "bg-ink/300 backdrop-blur" : ""}`}>
       <nav aria-label="Primary" className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 md:px-10">
-        <a href="#home" className="font-display text-2xl italic">Shaukath<span className="text-v">.</span></a>
+        <a href="#home" className="font-display text-2xl italic">Muhammed <span className="text-v">Shaukath</span></a>
         <ul className="hidden gap-8 md:flex">{nav.map((n) => { const on = active === n.toLowerCase(); return (<li key={n}><a href={`#${n.toLowerCase()}`} aria-current={on ? "true" : undefined} className={`relative text-sm transition-colors hover:text-fg ${on ? "text-fg" : "text-mute"}`}>{n}<span className={`absolute -bottom-1 left-0 h-px bg-v transition-all duration-300 ${on ? "w-full" : "w-0"}`} /></a></li>); })}</ul>
         <button className="grid size-11 place-items-center md:hidden" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
       </nav>

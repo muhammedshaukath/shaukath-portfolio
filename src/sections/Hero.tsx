@@ -19,8 +19,30 @@ export default function Hero() {
     <section id="home" className="relative flex min-h-svh flex-col justify-end px-5 pb-12 pt-28 md:px-10">
       <div className="mx-auto w-full max-w-7xl">
         <h1 className="font-display text-[clamp(4.2rem,17vw,16rem)] leading-[0.82] tracking-tight">
-          <L n={0}>Muhammed</L><L n={1} cls="md:ml-[14vw] italic text-v">Shaukath A</L>
-        </h1>
+          <span className="block overflow-hidden pb-[0.08em]">
+          <motion.span
+            className="block"
+            custom={0}
+            variants={line}
+            initial={reduce ? "show" : "hidden"}
+            animate="show"
+          >
+          Muhammed
+          </motion.span>
+          </span>
+
+          <span className="block overflow-hidden pb-[0.08em] md:ml-[14vw] italic text-v">
+            <motion.span
+              className="block"
+              custom={1}
+              variants={line}
+              initial={reduce ? "show" : "hidden"}
+              animate="show"
+            >
+              Shaukath A
+            </motion.span>
+          </span>
+</h1>
         <div className="mt-12 grid gap-10 md:grid-cols-12">
           <div className="md:col-span-5 md:col-start-2">
             <p className="max-w-md text-lg text-mute">{site.intro}</p>
