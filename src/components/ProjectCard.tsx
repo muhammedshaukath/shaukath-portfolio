@@ -1,15 +1,16 @@
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import type { Project } from "../types";
 const link = "inline-flex items-center gap-1 underline decoration-v underline-offset-4";
 export default function ProjectCard({ p, flip }: { p: Project; flip: boolean }) {
+  const reduce = useReducedMotion();
   const initials = p.title.split(" ").map((w) => w[0]).join("");
   const end = flip ? "md:justify-end" : "";
   return (
-    <motion.article whileHover="h" className="grid items-end gap-8 md:grid-cols-12">
+    <motion.article initial={reduce ? false : { opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} whileHover={reduce ? undefined : { y: -5 }} transition={{ duration: 0.55, ease: "easeOut" }} className="grid items-end gap-8 md:grid-cols-12">
       <div className={`relative md:col-span-7 md:row-start-1 ${flip ? "md:col-start-6" : "md:col-start-1"}`}>
         {p.image ? <img src={p.image} alt={`${p.title} preview`} loading="lazy" className="aspect-[4/3] w-full object-cover" />
-          : <div className="overflow-hidden bg-surface" role="img" aria-label={`${p.title} placeholder cover`}><motion.div variants={{ h: { scale: 1.05 } }} className="grid aspect-[4/3] place-items-center"><span className="font-display text-[10rem] italic leading-none text-v3 sm:text-[16rem]">{initials}</span></motion.div></div>}
+          : <div className="overflow-hidden bg-surface" role="img" aria-label={`${p.title} project artwork placeholder`}><motion.div whileHover={reduce ? undefined : { scale: 1.04 }} transition={{ duration: 0.4 }} className="grid aspect-[4/3] place-items-center"><span className="font-display text-[10rem] italic leading-none text-v3 sm:text-[16rem]">{initials}</span></motion.div></div>}
         <span className="absolute left-0 top-0 bg-v px-3 py-1 font-mono text-xs text-ink">{p.status}</span>
       </div>
       <div className={`relative z-10 md:col-span-6 md:row-start-1 ${flip ? "md:col-start-1 md:text-right" : "md:col-start-7"}`}>
